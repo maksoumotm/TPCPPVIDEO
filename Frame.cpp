@@ -4,7 +4,7 @@
 #include <ctime>
 
 int VideoFrame::defineWidth() {
-    std::cout << "Input the weight of the video = ";
+    std::cout << "Input the width of the video = ";
     std::cin >> _mWidth;
     return _mWidth;
 }
