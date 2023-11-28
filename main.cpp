@@ -1,4 +1,5 @@
 #include "Frame.hpp"
+#include <iostream>
 #include "AsyncQueue.hpp"
 
 int main() {
