@@ -1,6 +1,7 @@
 #include "Frame.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 int VideoFrame::defineWidth() {
     std::cout << "Input the width of the video = ";
@@ -17,11 +18,12 @@ int VideoFrame::defineHeight() {
 void VideoFrame::generateRandomData() {
     srand(time(0));
 
-    _dataContainer = new char*[_mHeight];
+    _dataContainer = new char*[_mHeight]; // Alloue de la mémoire pour les lignes de données vidéo
     for (int i = 0; i < _mHeight; ++i) {
-        _dataContainer[i] = new char[_mWidth];
+        _dataContainer[i] = new char[_mWidth]; // Alloue de la mémoire pour les colonnes de données vidéo
     }
 
+    // Génère des données vidéo aléatoires (remplissage de X ou O)
     for (int i = 0; i < _mHeight; ++i) {
         for (int j = 0; j < _mWidth; ++j) {
             int randomValue = rand() % 2;
@@ -34,8 +36,9 @@ void VideoFrame::displayData() const {
     std::cout << "Generated data in the container :" << std::endl;
     for (int i = 0; i < _mHeight; ++i) {
         for (int j = 0; j < _mWidth; ++j) {
-            std::cout << _dataContainer[i][j] << " ";
+            std::cout << _dataContainer[i][j] << " "; // Affiche les données générées
         }
         std::cout << std::endl;
     }
 }
+
