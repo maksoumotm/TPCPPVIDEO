@@ -1,22 +1,20 @@
-#include <iostream>
 #include "Frame.hpp"
-using namespace std;
+#include "AsyncQueue.hpp"
 
-int main(){
-    cout << "TEST2" << endl;
-    VideoFrame videoFrame;
+int main() {
+    // Création d'un objet VideoFrame et manipulation
+    VideoFrame frame1;
+    frame1.defineWidth();
+    frame1.defineHeight();
+    frame1.generateRandomData();
+    frame1.displayData();
 
-    // Définition de la largeur et de la hauteur de la vidéo
-    int width = videoFrame.defineWidth();
-    int height = videoFrame.defineHeight();
+    // Création d'un objet AsyncQueue et ajout des images
+    AsyncQueue queue;
+    queue.addImage(frame1);
 
-    // Génération de données aléatoires 'X' et 'O'
-    videoFrame.generateRandomData();
-
-    // Affichage des données générées
-    videoFrame.displayData();
-
-    return 0;
+    // Traitement des images dans la file d'attente
+    queue.processImages();
 
     return 0;
 }

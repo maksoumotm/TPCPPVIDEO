@@ -1,12 +1,14 @@
-#ifndef VIDEO_FRAME_HPP
-#define VIDEO_FRAME_HPP
+#ifndef FRAME_HPP
+#define FRAME_HPP
+
+#include <iostream>
 
 class VideoFrame {
 public:
     int defineWidth();
     int defineHeight();
     void generateRandomData();
-    void displayData();
+    void displayData() const;
 
 private:
     int _mWidth;
@@ -14,4 +16,4 @@ private:
     char** _dataContainer;
 };
 
-#endif // VIDEO_FRAME_HPP
+#endif // FRAME_HPP

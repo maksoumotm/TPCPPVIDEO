@@ -1,5 +1,4 @@
-#include "frame.hpp"
-#include <iostream>
+#include "Frame.hpp"
 #include <cstdlib>
 #include <ctime>
 
@@ -31,7 +30,7 @@ void VideoFrame::generateRandomData() {
     }
 }
 
-void VideoFrame::displayData() {
+void VideoFrame::displayData() const {
     std::cout << "Generated data in the container :" << std::endl;
     for (int i = 0; i < _mHeight; ++i) {
         for (int j = 0; j < _mWidth; ++j) {
