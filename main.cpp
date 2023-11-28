@@ -10,15 +10,18 @@ int main() {
     VideoFrame frame1;
     frame1.defineWidth();
     frame1.defineHeight();
-    frame1.generateRandomData();
-    frame1.displayData();
+    while (true){
+        frame1.generateRandomData();
+        frame1.displayData();
+    }
+    
 
     // Création d'un objet AsyncQueue et ajout des images
-    AsyncQueue queue;
-    queue.addImage(frame1);
+    // AsyncQueue queue;
+    // queue.addImage(frame1);
 
     // Traitement des images dans la file d'attente
-    queue.processImages();
+    // queue.processImages();
 
 
     return 0;

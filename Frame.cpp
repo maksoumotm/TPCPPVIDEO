@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <thread>  // Include the <thread> header for sleep_for
+#include <chrono>  // Include the <chrono> header for duration_cast
 
 int VideoFrame::defineWidth() {
     std::cout << "Input the width of the video = ";
@@ -18,12 +20,11 @@ int VideoFrame::defineHeight() {
 void VideoFrame::generateRandomData() {
     srand(time(0));
 
-    _dataContainer = new char*[_mHeight]; // Alloue de la mémoire pour les lignes de données vidéo
+    _dataContainer = new char*[_mHeight];
     for (int i = 0; i < _mHeight; ++i) {
-        _dataContainer[i] = new char[_mWidth]; // Alloue de la mémoire pour les colonnes de données vidéo
+        _dataContainer[i] = new char[_mWidth];
     }
 
-    // Génère des données vidéo aléatoires (remplissage de X ou O)
     for (int i = 0; i < _mHeight; ++i) {
         for (int j = 0; j < _mWidth; ++j) {
             int randomValue = rand() % 2;
@@ -36,9 +37,10 @@ void VideoFrame::displayData() const {
     std::cout << "Generated data in the container :" << std::endl;
     for (int i = 0; i < _mHeight; ++i) {
         for (int j = 0; j < _mWidth; ++j) {
-            std::cout << _dataContainer[i][j] << " "; // Affiche les données générées
+            std::cout << _dataContainer[i][j] << " ";
         }
         std::cout << std::endl;
     }
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    std::cout << "\033[2J" << "\033[1;1H";
 }
-
