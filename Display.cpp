@@ -1,7 +1,7 @@
-#include <iostream>
-using namespace std;
+#include "display.hpp"
 
-int main(){
-    
-    return 0;
+namespace Display {
+    void clearScreen() {
+        std::cout << "\033[2J\033[1;1H";
+    }
 }
