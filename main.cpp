@@ -3,7 +3,7 @@
 #include "AsyncQueue.hpp"
 
 int main() {
-    // Création d'un objet VideoFrame et manipulation
+    // Création d'un objet VideoFrame et manipulation TEST
     VideoFrame frame1;
     frame1.defineWidth();
     frame1.defineHeight();
