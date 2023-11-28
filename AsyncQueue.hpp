@@ -6,11 +6,11 @@
 
 class AsyncQueue {
 private:
-    std::vector<VideoFrame> imageQueue;
+    std::vector<VideoFrame> imageQueue; // File d'attente pour les trames vidéo
 
 public:
-    void addImage(const VideoFrame& frame);
-    void processImages() const;
+    void addImage(const VideoFrame& frame); // Ajoute une trame vidéo à la file d'attente
+    void processImages() const; // Traite les trames vidéo dans la file d'attente
 };
 
 #endif // ASYNCQUEUE_HPP
