@@ -37,10 +37,11 @@ void VideoFrame::displayData() const {
     std::cout << "Generated data in the container :" << std::endl;
     for (int i = 0; i < _mHeight; ++i) {
         for (int j = 0; j < _mWidth; ++j) {
-            std::cout << _dataContainer[i][j] << " ";
+            // std::cout << _dataContainer[i][j] << " ";
+            std::cout << _dataContainer[i][j];
         }
         std::cout << std::endl;
     }
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    std::cout << "\033[2J" << "\033[1;1H";
+    // std::cout << "\033[2J" << "\033[1;1H";
 }

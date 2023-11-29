@@ -1,6 +1,7 @@
 #include "Frame.hpp"
 #include "AsyncQueue.hpp"
 #include "Display.hpp"
+#include "Detector.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -10,10 +11,13 @@ int main() {
     VideoFrame frame1;
     frame1.defineWidth();
     frame1.defineHeight();
-    while (true){
-        frame1.generateRandomData();
-        frame1.displayData();
-    }
+    // while (true){
+    frame1.generateRandomData();
+    frame1.displayData();
+    // }
+    Detector detector;
+    detector.process();
+
     
 
     // Création d'un objet AsyncQueue et ajout des images

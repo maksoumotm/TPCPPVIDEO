@@ -10,7 +10,7 @@ public:
     void generateRandomData(); // Fonction pour générer des données vidéo aléatoires
     void displayData() const; // Fonction pour afficher les données vidéo
 
-private:
+protected:
     int _mWidth; // Largeur de la vidéo
     int _mHeight; // Hauteur de la vidéo
     char** _dataContainer; // Conteneur de données vidéo
