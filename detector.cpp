@@ -1,12 +1,13 @@
 #include "detector.hpp"
 #include "iostream"
 #include <algorithm>
+#include <vector>
 
 
-void Detector::process(VideoFrame frame)
+void Detector::process(VideoFrame VideoFrame)
 {
     // research pattern using the KMP algorythm
-    for (int i = 0; i < frame._height - pattern_height + 1; i++) {
+    for (int i = 0; i < VideoFrame._mHeight - pattern_height + 1; i++) {
         int current_video_row = i; // video row to math with pattern row
         int current_pattern_row = 0; // patter row used to match
 
@@ -19,8 +20,8 @@ void Detector::process(VideoFrame frame)
             
             int found_index = 0; // indice found
             std::string data = std::string(pattern[current_pattern_row]); // raw pattern to match
-            int index = current_video_row * frame._width; // index to get video row
-            std::string s (frame._data.begin() + index, frame._data.begin() + index + frame._width);
+            int index = current_video_row * VideoFrame._mWidth; // index to get video row
+            char** s (VideoFrame._dataContainer.begin() + index, frame._data.begin() + index + frame._width);
 
             base_index = (base_index == -1) ? 0 : *std::max_element(tab_index.begin(), tab_index.end()); // start research at the last index
 
