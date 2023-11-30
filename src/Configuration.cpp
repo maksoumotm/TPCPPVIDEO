@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Configuration.h"
 
-s_Configuration_t::Configuration(const std::string& fichierConfiguration)
+s_Configuration::Configuration(const std::string& fichierConfiguration)
 {
     std::ifstream file(fichierConfiguration);
     if (!file.is_open())
@@ -23,7 +23,7 @@ s_Configuration_t::Configuration(const std::string& fichierConfiguration)
     file.close();
 }
 
-void s_Configuration_t::readFrameWidth(std::ifstream& file)
+void s_Configuration::readFrameWidth(std::ifstream& file)
 {
     if (readAndSplitLine(file))
         if (token == "FRAME_WIDTH" and not value.empty()) {
@@ -34,7 +34,7 @@ void s_Configuration_t::readFrameWidth(std::ifstream& file)
     throw std::runtime_error("Erreur de lecteur du parametre FRAME_WIDTH");
 }
 
-void s_Configuration_t::readFrameHeight(std::ifstream& file)
+void s_Configuration::readFrameHeight(std::ifstream& file)
 {
     if (readAndSplitLine(file))
         if (token == "FRAME_HEIGHT" and not value.empty()) {
@@ -46,7 +46,7 @@ void s_Configuration_t::readFrameHeight(std::ifstream& file)
 }
 
 
-void s_Configuration_t::readFramePixel(std::ifstream& file)
+void s_Configuration::readFramePixel(std::ifstream& file)
 {
     if (readAndSplitLine(file))
         if (token == "FRAME_PIXEL_TYPE" and not value.empty() and value.size() == 2) {
@@ -58,8 +58,7 @@ void s_Configuration_t::readFramePixel(std::ifstream& file)
     throw std::runtime_error("Erreur de lecteur du parametre FRAME_PIXEL_TYPE");
 }
 
-
-void s_Configuration_t::readPattern(std::ifstream& file)
+void s_Configuration::readPattern(std::ifstream& file)
 {
     if (std::getline(file, line) and line == "PATTERN") {
         while(std::getline(file, line))
