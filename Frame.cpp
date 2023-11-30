@@ -2,8 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <thread>  // Include the <thread> header for sleep_for
-#include <chrono>  // Include the <chrono> header for duration_cast
+#include <thread>
+#include <chrono>
 
 int Frame::defineWidth() {
     std::cout << "Input the width of the video = ";
@@ -18,40 +18,44 @@ int Frame::defineHeight() {
 }
 
 void Frame::generateRandomData() {
-    srand(time(0));
+    srand(static_cast<unsigned int>(time(0)));
 
-    _dataContainer = new char*[_mHeight];
+    _dataContainer.clear(); // Clear previous data if any
     for (int i = 0; i < _mHeight; ++i) {
-        _dataContainer[i] = new char[_mWidth];
-    }
-
-    for (int i = 0; i < _mHeight; ++i) {
+        std::vector<char> row;
         for (int j = 0; j < _mWidth; ++j) {
             int randomValue = rand() % 2;
-            _dataContainer[i][j] = (randomValue == 0) ? 'X' : 'O';
+            row.push_back((randomValue == 0) ? 'X' : 'O');
         }
+        _dataContainer.push_back(row);
     }
 }
 
 void Frame::displayData() const {
-    std::cout << "Generated data in the container :" << std::endl;
-    for (int i = 0; i < _mHeight; ++i) {
-        for (int j = 0; j < _mWidth; ++j) {
-            // std::cout << _dataContainer[i][j] << " ";
-            std::cout << _dataContainer[i][j];
+    std::cout << "Generated data in the container:" << std::endl;
+    for (const auto& row : _dataContainer) {
+        for (char ch : row) {
+            std::cout << ch;
         }
         std::cout << std::endl;
     }
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    // std::cout << "\033[2J" << "\033[1;1H";
 }
 
-int Frame::getWidth() const{
+int Frame::getWidth() const {
     return _mWidth;
-} 
-int Frame::getHeight() const{
+}
+
+int Frame::getHeight() const {
     return _mHeight;
-} 
-std::vector <char> Frame::getDataContainer() const{
-    return _dataContainer;
-} 
+}
+
+std::vector<char> Frame::getDataContainer() const {
+    std::vector<char> flattenedData;
+    for (const auto& row : _dataContainer) {
+        for (char ch : row) {
+            flattenedData.push_back(ch);
+        }
+    }
+    return flattenedData;
+}
