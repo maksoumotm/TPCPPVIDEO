@@ -1,12 +1,13 @@
 #include "detector.hpp"
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
 
-void Detector::process()
+void Detector::process(const Frame &frame)
 {
     // research pattern using the KMP algorithm
-    for (int i = 0; i < _mHeight - pattern_height + 1; i++) {
+    for (int i = 0; i < frame.getHeight() - pattern_height + 1; i++) {
         int current_video_row = i; // video row to match with pattern row
         int current_pattern_row = 0; // pattern row used to match
 
@@ -19,8 +20,8 @@ void Detector::process()
 
             int found_index = 0; // index found
             std::string data = std::string(pattern[current_pattern_row]); // raw pattern to match
-            int index = current_video_row * _mWidth; // index to get video row
-            std::string s(_dataContainer[current_video_row], _dataContainer[current_video_row] + _mWidth);
+            int index = current_video_row * frame.getWidth(); // index to get video row
+            std::string s(frame.getDataContainer().begin() + index, frame.getDataContainer().begin() + index + frame.getWidth());
 
             base_index = (base_index == -1) ? 0 : *std::max_element(tab_index.begin(), tab_index.end()); // start research at the last index
 
@@ -37,8 +38,8 @@ void Detector::process()
                     // print index and part of frame where pattern detected
                     std::cout << "pattern found " << found_index << " " << i << std::endl;
                     for (int j = i; j < i + 4; j++) {
-                        for (int k = 0; k < _mWidth; k++) {
-                            std::cout << _dataContainer[j][k];
+                        for (int k = 0; k < frame.getWidth(); k++) {
+                            std::cout << frame.getDataContainer()[j * frame.getWidth() + k];
                         }
                         std::cout << "\n";
                     }

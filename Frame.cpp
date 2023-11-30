@@ -5,19 +5,19 @@
 #include <thread>  // Include the <thread> header for sleep_for
 #include <chrono>  // Include the <chrono> header for duration_cast
 
-int VideoFrame::defineWidth() {
+int Frame::defineWidth() {
     std::cout << "Input the width of the video = ";
     std::cin >> _mWidth;
     return _mWidth;
 }
 
-int VideoFrame::defineHeight() {
+int Frame::defineHeight() {
     std::cout << "Input the height of the video = ";
     std::cin >> _mHeight;
     return _mHeight;
 }
 
-void VideoFrame::generateRandomData() {
+void Frame::generateRandomData() {
     srand(time(0));
 
     _dataContainer = new char*[_mHeight];
@@ -33,7 +33,7 @@ void VideoFrame::generateRandomData() {
     }
 }
 
-void VideoFrame::displayData() const {
+void Frame::displayData() const {
     std::cout << "Generated data in the container :" << std::endl;
     for (int i = 0; i < _mHeight; ++i) {
         for (int j = 0; j < _mWidth; ++j) {
@@ -45,3 +45,13 @@ void VideoFrame::displayData() const {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     // std::cout << "\033[2J" << "\033[1;1H";
 }
+
+int Frame::getWidth() const{
+    return _mWidth;
+} 
+int Frame::getHeight() const{
+    return _mHeight;
+} 
+std::vector <char> Frame::getDataContainer() const{
+    return _dataContainer;
+} 

@@ -1,6 +1,6 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
-
+#pragma once
 #include <iostream>
 
 namespace Display {

@@ -1,6 +1,6 @@
 #ifndef ASYNCQUEUE_HPP
 #define ASYNCQUEUE_HPP
-
+#pragma once
 #include <vector>
 #include "Frame.hpp"
 
