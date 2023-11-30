@@ -1,7 +1,7 @@
 #include <exception>
 #include <fstream>
 #include <iostream>
-#include "Configuration.h"
+#include "Configuration.hpp"
 
 
 Configuration::Configuration(const std::string& fichierConfiguration)
@@ -91,7 +91,7 @@ Configuration::Configuration(const std::string& fichierConfiguration)
 			{
 				_pattern.addLine(std::vector<char>(line.begin(), line.end()));
 			}
-			
+
 			if (not _pattern.exist())
 				std::cout << "Erreur de lecteur du parametre PATTERN : le pattern n'est pas défini" << std::endl;
 			else
@@ -102,14 +102,14 @@ Configuration::Configuration(const std::string& fichierConfiguration)
 
 		return false;
 	};
-		
+
 
 
 	bool res =  readFrameWidth()
 		and readFrameHeight()
 		and readFramePixel()
 		and readPattern();
-		
+
 
 	file.close();
 

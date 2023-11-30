@@ -16,7 +16,7 @@ void Detector::process(VideoFrame frame)
         int base_index = -1;
 
         while(!finish) {
-            
+
             int found_index = 0; // indice found
             std::string data = std::string(pattern[current_pattern_row]); // raw pattern to match
             int index = current_video_row * frame._width; // index to get video row
@@ -81,13 +81,13 @@ int Detector::KMPSearch(std::string pat, std::string txt, int base_index, int& f
     int pattern_size = pat.length();
     int *lps = (int *)malloc(sizeof(int)*pattern_size);
     int txt_size = txt.length();
-     
+
     // Preprocess the pattern (calculate lps[] array)
     computeLPSArray(pat, pattern_size, lps);
- 
+
     int i = base_index; // index for txt
     int j = 0; // index for pat
-    
+
     while (i < txt_size)
     {
         if (pat[j] == txt[i])
@@ -100,7 +100,7 @@ int Detector::KMPSearch(std::string pat, std::string txt, int base_index, int& f
             found_index = i - j;// return 1 is pattern is found
             return 1;
         }
-         
+
         // mismatch after j matches
         else if (i < txt_size && pat[j] != txt[i])
         {
@@ -113,7 +113,7 @@ int Detector::KMPSearch(std::string pat, std::string txt, int base_index, int& f
         }
     }
     free(lps); // to avoid memory leak
-     
+
     // return 0 is pattern is not found
     return 0;
 }
@@ -124,9 +124,9 @@ void Detector::computeLPSArray(std::string pat, int m, int *lps)
     // length of the previous longest prefix suffix
     int len = 0;
     int i = 1;
- 
+
     lps[0] = 0; // lps[0] is always 0
- 
+
     // the loop calculates lps[i] for i = 1 to M-1
     while (i < m)
     {
@@ -139,9 +139,9 @@ void Detector::computeLPSArray(std::string pat, int m, int *lps)
         {
             if (len != 0)
             {
-                
+
                 len = lps[len - 1];
- 
+
                 // Also, note that we do not increment i here
             }
             else // if (len == 0)
