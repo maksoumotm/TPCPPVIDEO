@@ -1,22 +1,14 @@
-#ifndef PIPELINE_ELEMENT_HPP
-#define PIPELINE_ELEMENT_HPP
+#pragma once
 
-#include "Frame.hpp" // Inclusion de la classe VideoFrame définie dans Frame.hpp
+#include "VideoFrame.hpp"
+#include <vector>  // Include vector header for downstreamElements
 
 class PipelineElement {
 public:
-    // Fonction virtuelle pour lier cet élément à un élément en aval dans le pipeline
-    virtual void link(PipelineElement* downstreamElement);
-
-    // Fonction virtuelle pour traiter une trame vidéo
-    virtual void process(const VideoFrame& frame) = 0;
-
-    // Fonction pour traiter la trame vidéo et la passer à l'élément en aval
-    virtual void processAndPushDownstream(const VideoFrame& frame);
+    virtual void process(VideoFrame& frame) = 0;  // Virtual, but not pure virtual
+    void link(PipelineElement* downstream); // This function remains pure virtual
+    void processAndPushDownstream(VideoFrame& frame); // This function remains pure virtual
 
 protected:
-    PipelineElement* downstream = nullptr; // Pointeur vers l'élément en aval (initialisé à nullptr)
+    std::vector<PipelineElement*> downstreamElements; // Declare downstreamElements as a protected member
 };
-
-#endif // PIPELINE_ELEMENT_HPP
-

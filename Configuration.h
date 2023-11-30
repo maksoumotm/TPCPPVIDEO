@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Pattern.h"
+#include <string>
 
 struct Configuration
 {
