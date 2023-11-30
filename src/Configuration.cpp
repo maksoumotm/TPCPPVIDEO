@@ -23,6 +23,19 @@ s_Configuration::Configuration(const std::string& fichierConfiguration)
     file.close();
 }
 
+void s_Configuration::readAndSplitLine(std::ifstream& file)
+{
+    if (std::getline(file, line)) {
+        size_t pos = line.find(delimiter);
+        if (pos != std::string::npos) {
+            token = line.substr(0, pos);
+            value = line.substr(pos + delimiter.size(), line.size());
+            return true;
+        }
+    }
+    return false;
+}
+
 void s_Configuration::readFrameWidth(std::ifstream& file)
 {
     if (readAndSplitLine(file))

@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Pattern.h"
 
-
 void Pattern::addLine(const std::vector<char>& line)
 {
 	auto aLine = line;

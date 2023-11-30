@@ -13,5 +13,3 @@ void AsyncQueue::processImages() const {
         std::cout << std::endl;
     }
 }
-
-
